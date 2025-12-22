@@ -83,7 +83,7 @@
 
 <script>
   const puzzle = document.getElementById("puzzle");
-  const size = 3; // 3x3 puzzle
+  const size = 3;
   let pieces = [];
 
   // buat potongan puzzle
@@ -92,57 +92,70 @@
       const piece = document.createElement("div");
       piece.classList.add("piece");
       piece.style.backgroundPosition = `-${col * 100}px -${row * 100}px`;
-      piece.setAttribute("data-pos", row * size + col);
+      piece.dataset.pos = row * size + col;
       pieces.push(piece);
     }
   }
 
-  // acak posisi puzzle
+  // acak
   pieces.sort(() => Math.random() - 0.5);
   pieces.forEach(p => puzzle.appendChild(p));
 
   let dragged = null;
 
-  document.querySelectorAll(".piece").forEach(piece => {
-    piece.addEventListener("dragstart", e => {
-      dragged = piece;
-      piece.classList.add("dragging");
-    });
-    piece.addEventListener("dragend", e => {
-      dragged = null;
-      piece.classList.remove("dragging");
-    });
-    piece.setAttribute("draggable", true);
+  function swapPieces(p1, p2) {
+    const p1Next = p1.nextSibling === p2 ? p1 : p1.nextSibling;
+    puzzle.insertBefore(p2, p1);
+    puzzle.insertBefore(p1, p1Next);
+    checkWin();
+  }
 
+  // === DESKTOP (DRAG) ===
+  pieces.forEach(piece => {
+    piece.draggable = true;
+
+    piece.addEventListener("dragstart", () => dragged = piece);
     piece.addEventListener("dragover", e => e.preventDefault());
     piece.addEventListener("drop", e => {
       e.preventDefault();
       if (dragged && dragged !== piece) {
-        const draggedIndex = [...puzzle.children].indexOf(dragged);
-        const targetIndex = [...puzzle.children].indexOf(piece);
-
-        if (draggedIndex > targetIndex) {
-          puzzle.insertBefore(dragged, piece);
-        } else {
-          puzzle.insertBefore(dragged, piece.nextSibling);
-        }
+        swapPieces(dragged, piece);
       }
+    });
+  });
 
-      // cek apakah puzzle sudah benar
-      checkWin();
+  // === MOBILE (TOUCH) ===
+  let touchStartPiece = null;
+
+  pieces.forEach(piece => {
+    piece.addEventListener("touchstart", () => {
+      touchStartPiece = piece;
+      piece.style.opacity = "0.6";
+    });
+
+    piece.addEventListener("touchend", e => {
+      piece.style.opacity = "1";
+      const touch = e.changedTouches[0];
+      const target = document.elementFromPoint(touch.clientX, touch.clientY);
+
+      if (target && target.classList.contains("piece") && target !== touchStartPiece) {
+        swapPieces(touchStartPiece, target);
+      }
     });
   });
 
   function checkWin() {
-    const current = [...puzzle.children].map(p => p.getAttribute("data-pos"));
+    const current = [...puzzle.children].map(p => p.dataset.pos);
     const correct = [...Array(size * size).keys()].map(String);
     if (JSON.stringify(current) === JSON.stringify(correct)) {
       setTimeout(() => {
-        alert("🎉 Selamat! Kamu berhasil menyusun foto kenangan 💖");
+        alert("🎉 Selamat! Puzzle berhasil disusun 💖");
       }, 200);
     }
   }
 </script>
 
+
 </body>
 </html>
+
