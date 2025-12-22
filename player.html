@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Kami</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Comic Sans MS", cursive;
+      background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
+      overflow-x: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 20px 0;
+      color: #fff;
+    }
+
+    /* Floating Player */
+    .player {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      width: 320px;
+      height: 70px;
+      background: white;
+      border-radius: 35px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    .player button {
+      border: none;
+      background: none;
+      font-size: 22px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .player button:hover {
+      transform: scale(1.2);
+    }
+    .player .play {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ff758c, #ff7eb3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 22px;
+    }
+
+    /* Daftar Lagu */
+    .lagu-list {
+      margin: 120px auto 40px;
+      max-width: 500px;
+      display: grid;
+      gap: 12px;
+    }
+    .lagu-card {
+      padding: 14px 18px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #ff9ebb, #c2185b);
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .lagu-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+
+    /* Falling Flowers */
+    .flower {
+      position: fixed;
+      top: -50px;
+      font-size: 20px;
+      animation: fall linear forwards;
+      z-index: 0;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Dashboard Musik & Cerita Kami 🌸</h1>
+
+  <!-- Floating Player -->
+  <div class="player">
+    <button onclick="prevLagu()">⏮</button>
+    <button class="play" onclick="togglePlay()">▶</button>
+    <button onclick="nextLagu()">⏭</button>
+  </div>
+
+  <!-- Daftar Lagu -->
+  <div class="lagu-list">
+    <div class="lagu-card" onclick="setLagu(0)">🎵 Lagu 1 - Judul Pertama</div>
+    <div class="lagu-card" onclick="setLagu(1)">🎶 Lagu 2 - Judul Kedua</div>
+    <div class="lagu-card" onclick="setLagu(2)">🎼 Lagu 3 - Judul Ketiga</div>
+  </div>
+
+  <!-- Audio -->
+  <audio id="audioPlayer"></audio>
+
+  <script>
+    const audio = document.getElementById("audioPlayer");
+    const daftarLagu = ["lagu1.mp3", "lagu2.mp3", "lagu3.mp3"];
+    let indexLagu = 0;
+    let isPlaying = false;
+
+    function setLagu(i) {
+      indexLagu = i;
+      audio.src = daftarLagu[indexLagu];
+      audio.play();
+      isPlaying = true;
+      updateButton();
+    }
+
+    function togglePlay() {
+      if (isPlaying) {
+        audio.pause();
+      } else {
+        audio.play();
+      }
+      isPlaying = !isPlaying;
+      updateButton();
+    }
+
+    function nextLagu() {
+      indexLagu = (indexLagu + 1) % daftarLagu.length;
+      setLagu(indexLagu);
+    }
+
+    function prevLagu() {
+      indexLagu = (indexLagu - 1 + daftarLagu.length) % daftarLagu.length;
+      setLagu(indexLagu);
+    }
+
+    function updateButton() {
+      document.querySelector(".play").innerHTML = isPlaying ? "⏸" : "▶";
+    }
+
+    // Efek bunga jatuh
+    function buatBunga() {
+      const bunga = document.createElement("div");
+      bunga.classList.add("flower");
+      bunga.innerHTML = "🌸";
+      bunga.style.left = Math.random() * window.innerWidth + "px";
+      bunga.style.animationDuration = 3 + Math.random() * 5 + "s";
+      document.body.appendChild(bunga);
+
+      setTimeout(() => bunga.remove(), 8000);
+    }
+    setInterval(buatBunga, 500);
+  </script>
+
+</body>
+</html>

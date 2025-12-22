@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Puzzle Foto Kita</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #f48fb1, #ce93d8);
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 20px;
+    }
+
+    #puzzle {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-template-rows: repeat(3, 100px);
+      gap: 3px;
+      margin: 30px auto;
+      width: max-content;
+      background: #fff;
+      padding: 5px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    }
+
+    .piece {
+      width: 100px;
+      height: 100px;
+      background-image: url("ft2.jpg"); /* ganti dengan foto kalian */
+      background-size: 300px 300px;
+      border: 2px solid #fff;
+      cursor: grab;
+    }
+
+    .piece.dragging {
+      opacity: 0.5;
+    }
+
+    /* Tombol */
+    .back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #ad1457;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .back-btn:hover {
+      background: #880e4f;
+    }
+   @media (max-width: 600px) {
+  #puzzle {
+    grid-template-columns: repeat(3, 80px);
+    grid-template-rows: repeat(3, 80px);
+  }
+  .piece {
+    width: 80px;
+    height: 80px;
+    background-size: 240px 240px;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+
+  <h1>🧩 Puzzle Kenangan Kita</h1>
+  <p>Susun kembali potongan ini menjadi foto utuh 💖</p>
+
+  <div id="puzzle"></div>
+
+  <a href="dashboard.html" class="back-btn">⬅ Kembali ke Dashboard</a>
+
+<script>
+  const puzzle = document.getElementById("puzzle");
+  const size = 3; // 3x3 puzzle
+  let pieces = [];
+
+  // buat potongan puzzle
+  for (let row = 0; row < size; row++) {
+    for (let col = 0; col < size; col++) {
+      const piece = document.createElement("div");
+      piece.classList.add("piece");
+      piece.style.backgroundPosition = `-${col * 100}px -${row * 100}px`;
+      piece.setAttribute("data-pos", row * size + col);
+      pieces.push(piece);
+    }
+  }
+
+  // acak posisi puzzle
+  pieces.sort(() => Math.random() - 0.5);
+  pieces.forEach(p => puzzle.appendChild(p));
+
+  let dragged = null;
+
+  document.querySelectorAll(".piece").forEach(piece => {
+    piece.addEventListener("dragstart", e => {
+      dragged = piece;
+      piece.classList.add("dragging");
+    });
+    piece.addEventListener("dragend", e => {
+      dragged = null;
+      piece.classList.remove("dragging");
+    });
+    piece.setAttribute("draggable", true);
+
+    piece.addEventListener("dragover", e => e.preventDefault());
+    piece.addEventListener("drop", e => {
+      e.preventDefault();
+      if (dragged && dragged !== piece) {
+        const draggedIndex = [...puzzle.children].indexOf(dragged);
+        const targetIndex = [...puzzle.children].indexOf(piece);
+
+        if (draggedIndex > targetIndex) {
+          puzzle.insertBefore(dragged, piece);
+        } else {
+          puzzle.insertBefore(dragged, piece.nextSibling);
+        }
+      }
+
+      // cek apakah puzzle sudah benar
+      checkWin();
+    });
+  });
+
+  function checkWin() {
+    const current = [...puzzle.children].map(p => p.getAttribute("data-pos"));
+    const correct = [...Array(size * size).keys()].map(String);
+    if (JSON.stringify(current) === JSON.stringify(correct)) {
+      setTimeout(() => {
+        alert("🎉 Selamat! Kamu berhasil menyusun foto kenangan 💖");
+      }, 200);
+    }
+  }
+</script>
+
+</body>
+</html>

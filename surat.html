@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💌 Surat Untukmu</title>
+  <style>
+    body {
+      background: #fff0f6;
+      font-family: "Segoe UI", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .envelope {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      background: #f48fb1;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.5s ease;
+    }
+    .envelope:hover {
+      transform: scale(1.05);
+    }
+
+    /* Penutup amplop */
+    .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 150px solid transparent;
+      border-right: 150px solid transparent;
+      border-bottom: 100px solid #ad1457;
+      transition: transform 0.7s ease;
+      transform-origin: top;
+    }
+
+    /* Isi surat */
+    .letter {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 260px;
+      height: 160px;
+      background: white;
+      border-radius: 6px;
+      padding: 20px;
+      box-sizing: border-box;
+      text-align: center;
+      font-size: 16px;
+      line-height: 1.5;
+      transform: translateY(100%);
+      opacity: 0;
+      transition: transform 0.8s ease, opacity 0.8s ease;
+    }
+
+    .envelope.open .flap {
+      transform: rotateX(180deg);
+    }
+
+    .envelope.open .letter {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+<div class="envelope" id="envelope">
+  <div class="flap"></div>
+  <div class="letter">
+    <h3>Untuk Kamu 💕</h3>
+    <p>
+      Aku mungkin tidak pandai berkata-kata,  
+      tapi lewat surat kecil ini aku ingin bilang:  
+      Kamu adalah hal terindah yang pernah hadir dalam hidupku.  
+    </p>
+    <p>💖 Dari aku yang selalu sayang kamu 💖</p>
+  </div>
+</div>
+
+<script>
+  const envelope = document.getElementById("envelope");
+  envelope.addEventListener("click", () => {
+    envelope.classList.toggle("open");
+  });
+</script>
+
+</body>
+</html>

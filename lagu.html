@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playlist & Lirik</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #f8bbd0, #f48fb1);
+      color: white;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      margin-top: 20px;
+      font-size: 32px;
+    }
+
+    /* Player */
+    .player {
+      margin: 30px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    /* Lirik Berjalan */
+    .lyrics-container {
+      margin-top: 40px;
+      height: 150px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .lyrics {
+      display: inline-block;
+      white-space: nowrap;
+      animation: scrollLyrics 15s linear infinite;
+      font-size: 20px;
+      color: #fff;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+    }
+
+    @keyframes scrollLyrics {
+      0%   { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* Tombol kembali */
+    .back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #ad1457;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .back-btn:hover {
+      background: #880e4f;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎶 Playlist Kita 🎶</h1>
+
+  <div class="player">
+    <label for="laguSelect">Pilih Lagu:</label>
+    <select id="laguSelect" onchange="gantiLagu()">
+      <option value="lagu1.mp3">Lagu 1</option>
+      <option value="lagu2.mp3">Lagu 2</option>
+      <option value="lagu3.mp3">Lagu 3</option>
+    </select>
+    <br><br>
+    <audio id="audioPlayer" controls autoplay>
+      <source src="lagu1.mp3" type="audio/mpeg">
+      Browsermu tidak mendukung audio player.
+    </audio>
+  </div>
+
+  <div class="lyrics-container">
+    <div class="lyrics" id="lyricsText">
+      🌸 Ini adalah lirik berjalan... Kamu bisa menulis kata-kata romantis atau lirik lagu favoritmu di sini... 💕
+    </div>
+  </div>
+
+  <a href="dashboard.html" class="back-btn">⬅ Kembali ke Dashboard</a>
+
+<script>
+  function gantiLagu() {
+    const player = document.getElementById("audioPlayer");
+    const select = document.getElementById("laguSelect");
+    player.src = select.value;
+    player.play();
+  }
+</script>
+
+</body>
+</html>

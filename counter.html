@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kami Bersama</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(180deg, #ffe6f0, #ffcce0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      max-width: 400px;
+      width: 90%;
+      position: relative;
+      z-index: 1;
+    }
+
+    h2 {
+      color: #e75480;
+      margin-bottom: 15px;
+    }
+
+    .days {
+      font-size: 60px;
+      font-weight: bold;
+      color: #333;
+      margin: 10px 0;
+    }
+
+    .names {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .name-box {
+      background: #f8bbd0;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 15px;
+      font-weight: bold;
+    }
+
+    .birthdays {
+      margin-top: 25px;
+      text-align: left;
+    }
+
+    .birthday-item {
+      background: #fff0f5;
+      padding: 12px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .birthday-item span {
+      font-weight: bold;
+      color: #e75480;
+    }
+
+    /* bunga jatuh */
+    #bungaCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* 🌸 Responsif */
+    @media (max-width: 600px) {
+      .days {
+        font-size: 40px;
+      }
+      .name-box {
+        padding: 8px 12px;
+        font-size: 14px;
+      }
+      .birthday-item {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="bungaCanvas"></canvas>
+
+  <div class="card">
+    <h2>💖 Kami Bersama</h2>
+    <div class="days" id="daysTogether">0</div>
+    <small>hari sejak 29 Januari 2024</small>
+
+    <div class="names">
+      <div class="name-box">Wildan</div>
+      <div class="name-box">Lulu</div>
+    </div>
+
+    <div class="birthdays">
+      <div class="birthday-item">
+        🎂 Ulang tahun Wildan: <span id="ultahWildan"></span>
+      </div>
+      <div class="birthday-item">
+        🎂 Ulang tahun Lulu: <span id="ultahLulu"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tombol Kembali -->
+  <div style="text-align:center; margin:20px 0; position:relative; z-index:1;">
+    <button onclick="goBack()" 
+            style="padding:10px 25px; font-size:16px; background:#e75480; color:white; border:none; border-radius:8px; cursor:pointer;">
+      ⬅ Kembali
+    </button>
+  </div>
+
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+
+    // Hitung hari bersama
+    const startDate = new Date("2024-01-29");
+    const today = new Date();
+    const diffTime = today - startDate;
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    document.getElementById("daysTogether").textContent = diffDays;
+
+    // Hitung sisa hari ulang tahun
+    function daysUntil(birthMonth, birthDay) {
+      const now = new Date();
+      let nextBirthday = new Date(now.getFullYear(), birthMonth - 1, birthDay);
+
+      if (nextBirthday < now) {
+        nextBirthday.setFullYear(now.getFullYear() + 1);
+      }
+      const diff = nextBirthday - now;
+      return Math.ceil(diff / (1000 * 60 * 60 * 24));
+    }
+
+    document.getElementById("ultahWildan").textContent = daysUntil(3, 9) + " hari lagi";
+    document.getElementById("ultahLulu").textContent = daysUntil(12, 23) + " hari lagi";
+
+    // bunga jatuh
+    const canvas = document.getElementById("bungaCanvas");
+    const ctx = canvas.getContext("2d");
+    let width, height;
+    let flowers = [];
+
+    function resizeCanvas() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    class Flower {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * -height;
+        this.size = 15 + Math.random() * 20;
+        this.speed = 1 + Math.random() * 2;
+        this.angle = Math.random() * Math.PI * 2;
+        this.swing = 0.5 + Math.random() * 0.5;
+      }
+      update() {
+        this.y += this.speed;
+        this.x += Math.sin(this.angle) * this.swing;
+        this.angle += 0.02;
+        if (this.y > height + this.size) {
+          this.y = -this.size;
+          this.x = Math.random() * width;
+        }
+      }
+      draw() {
+        ctx.fillStyle = "rgba(255,182,193,0.8)";
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size * 0.3, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(this.x + this.size * 0.4, this.y, this.size * 0.3, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(this.x - this.size * 0.4, this.y, this.size * 0.3, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(this.x, this.y + this.size * 0.4, this.size * 0.3, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(this.x, this.y - this.size * 0.4, this.size * 0.3, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function createFlowers() {
+      flowers = [];
+      for (let i = 0; i < 30; i++) {
+        flowers.push(new Flower());
+      }
+    }
+    createFlowers();
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      flowers.forEach(flower => {
+        flower.update();
+        flower.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+</body>
+</html>
