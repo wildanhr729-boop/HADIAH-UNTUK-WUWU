@@ -2,108 +2,69 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Codingan Kami</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Idan Dan Wuwu</title>
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family: 'Comic Sans MS', cursive;
+body{
+  margin:0;
+  padding-top:70px;
+  font-family:'Comic Neue', cursive;
+  background:#fff;
+  overflow-x:hidden;
 }
 
 /* NAVBAR */
-.navbar{
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background:#d81b60;
-    height:56px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 16px;
-    color:#fff;
+.navbar-custom{
+  background:#e91e63;
+  border:none;
+}
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-nav>li>a{
+  color:white;
+}
+.navbar-custom .navbar-nav>li>a:hover{
+  background:rgba(255,255,255,0.2);
 }
 
-.hamburger{
-    font-size:26px;
-    cursor:pointer;
+/* hamburger */
+.navbar-toggle{
+  border:1px solid white;
+}
+.navbar-toggle .icon-bar{
+  background:white;
 }
 
-/* MENU */
-.menu{
-    position:fixed;
-    top:56px;
-    right:0;
-    width:200px;
-    background:#fff;
-    display:none;
-    box-shadow:-2px 2px 10px rgba(0,0,0,.2);
-    z-index:1001;
+/* JUDUL */
+.judul{
+  text-align:center;
+  margin-top:40px;
 }
-
-.menu a{
-    display:block;
-    padding:12px;
-    text-decoration:none;
-    color:#333;
-    border-bottom:1px solid #eee;
+.judul h1{
+  font-size:36px;
 }
-
-/* HERO */
-.hero{
-    background:#fff;
-    text-align:center;
-    padding:60px 20px;
-    position:relative;
-}
-
-.hero h1{
-    font-size:30px;
-}
-
-.hero p{
-    margin-top:10px;
-}
-
-/* GALERI */
-.gallery{
-    display:flex;
-    gap:12px;
-    padding:20px;
-}
-
-.gallery img{
-    width:50%;
-    border-radius:15px;
-    box-shadow:0 4px 10px rgba(0,0,0,.2);
-}
-
-/* SECTION */
-.section{
-    padding:40px 20px;
-    text-align:center;
-}
-
-.section h2{
-    color:#d81b60;
-    margin-bottom:10px;
+.judul p{
+  font-size:18px;
 }
 
 /* BUNGA JATUH */
-.flower{
-    position:fixed;
-    top:-50px;
-    font-size:20px;
-    animation:fall linear infinite;
+.bunga{
+  position:fixed;
+  top:-50px;
+  animation:jatuh linear infinite;
+  z-index:999;
 }
-
-@keyframes fall{
-    to{
-        transform:translateY(110vh) rotate(360deg);
-    }
+@keyframes jatuh{
+  to{
+    transform:translateY(110vh) rotate(360deg);
+  }
 }
 </style>
 </head>
@@ -111,58 +72,57 @@
 <body>
 
 <!-- NAVBAR -->
-<div class="navbar">
-    <div>Codingan Kami</div>
-    <div class="hamburger" onclick="toggleMenu()">☰</div>
+<nav class="navbar navbar-custom navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Codingan Kami</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Buku Cerita</a></li>
+        <li><a href="#">Album Foto</a></li>
+        <li><a href="#">Hari Jadi</a></li>
+        <li><a href="#">Playlist</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ISI -->
+<div class="judul">
+  <h1>💖 Idan Dan Wuwu 💖</h1>
+  <p>Perjalanan kisah kita tertulis di setiap harinya</p>
 </div>
 
-<!-- MENU -->
-<div class="menu" id="menu">
-    <a href="#">Beranda</a>
-    <a href="#">Galeri</a>
-    <a href="#">Cerita</a>
+<!-- CONTOH FOTO -->
+<div class="container text-center">
+  <img src="https://i.imgur.com/4AiXzf8.jpeg" class="img-responsive center-block" style="max-width:300px;border-radius:15px;">
+  <p style="margin-top:10px;">📅 14 Februari 2023</p>
 </div>
 
-<!-- HERO -->
-<div class="hero">
-    <h1>💖 Idan Dan Wuwu 💖</h1>
-    <p>Perjalanan kisah kita tertulis di setiap harinya</p>
-</div>
-
-<!-- GALERI FOTO -->
-<div class="gallery">
-    <img src="https://picsum.photos/400/300?random=1">
-    <img src="https://picsum.photos/400/300?random=2">
-</div>
-
-<!-- CERITA -->
-<div class="section">
-    <h2>✨ Awal Pertemuan Kita</h2>
-    <p>
-        Semua berawal dari ketidaksengajaan bertemu di jalan waktu itu,
-        dan dari situ aku menemukan rasa yang selama ini hilang dari diriku.
-    </p>
-    <p><b>📅 12 Februari 2024</b></p>
-</div>
-
+<!-- EFEK BUNGA -->
 <script>
-function toggleMenu(){
-    const m = document.getElementById("menu");
-    m.style.display = m.style.display === "block" ? "none" : "block";
+for(let i=0;i<25;i++){
+  let bunga=document.createElement("div");
+  bunga.innerHTML="🌸";
+  bunga.className="bunga";
+  bunga.style.left=Math.random()*100+"vw";
+  bunga.style.animationDuration=3+Math.random()*5+"s";
+  bunga.style.fontSize=20+Math.random()*20+"px";
+  document.body.appendChild(bunga);
 }
-
-/* BUNGA JATUH */
-setInterval(()=>{
-    const f = document.createElement("div");
-    f.className = "flower";
-    f.innerHTML = "🌸";
-    f.style.left = Math.random()*100 + "vw";
-    f.style.animationDuration = (3 + Math.random()*5) + "s";
-    document.body.appendChild(f);
-    setTimeout(()=>f.remove(),8000);
-},500);
 </script>
 
+<!-- SCRIPT -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 </body>
-        </html>
-        
+</html>
