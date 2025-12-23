@@ -1,79 +1,159 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <title>Codingan Kami</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codingan Kami</title>
 
-    <!-- WAJIB: viewport -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
 
-    <!-- Bootstrap 3 CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+/* NAVBAR */
+.navbar{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #d81b60;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    color: white;
+}
 
-    <style>
-        /* Warna navbar seperti di gambar */
-        .navbar {
-            background-color: #d81b60;
-            border: none;
-            border-radius: 0;
-        }
+.navbar .brand{
+    font-size: 18px;
+    font-weight: bold;
+}
 
-        .navbar-brand,
-        .navbar-nav li a {
-            color: white !important;
-        }
+/* HAMBURGER */
+.hamburger{
+    font-size: 26px;
+    cursor: pointer;
+    user-select: none;
+}
 
-        /* Warna garis hamburger */
-        .navbar-toggle .icon-bar {
-            background-color: white;
-        }
-    </style>
+/* MENU DROPDOWN */
+.menu{
+    position: fixed;
+    top: 56px;
+    right: 0;
+    width: 200px;
+    background: #fff;
+    box-shadow: -2px 2px 10px rgba(0,0,0,.2);
+    display: none;
+}
+
+.menu a{
+    display: block;
+    padding: 12px;
+    color: #333;
+    text-decoration: none;
+    border-bottom: 1px solid #eee;
+}
+
+.menu a:hover{
+    background: #f5f5f5;
+}
+
+/* HERO */
+.hero{
+    background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+    padding: 80px 20px 40px;
+    text-align: center;
+}
+
+.sun{
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+.hero h1{
+    color: white;
+    font-size: 32px;
+}
+
+.hero p{
+    color: white;
+    margin-top: 8px;
+}
+
+/* GALERI */
+.gallery{
+    display: flex;
+    gap: 12px;
+    padding: 20px;
+}
+
+.gallery img{
+    width: 50%;
+    border-radius: 12px;
+}
+
+/* SECTION */
+.section{
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.section h2{
+    color: #d81b60;
+    margin-bottom: 12px;
+}
+</style>
 </head>
+
 <body>
 
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="brand">Codingan Kami</div>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+</div>
 
-        <!-- HEADER -->
-        <div class="navbar-header">
-            <button type="button"
-                    class="navbar-toggle collapsed"
-                    data-toggle="collapse"
-                    data-target="#main-navbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+<!-- MENU -->
+<div class="menu" id="menu">
+    <a href="#">Beranda</a>
+    <a href="#">Galeri</a>
+    <a href="#">Cerita</a>
+    <a href="#">Tentang</a>
+</div>
 
-            <a class="navbar-brand" href="#">Codingan Kami</a>
-        </div>
+<!-- HERO -->
+<div class="hero">
+    <div class="sun">🌞</div>
+    <h1>💖 Idan Dan Wuwu 💖</h1>
+    <p>Perjalanan kisah kita tertulis di setiap harinya</p>
+</div>
 
-        <!-- MENU -->
-        <div class="collapse navbar-collapse" id="main-navbar">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Beranda</a></li>
-                <li><a href="#">Galeri</a></li>
-                <li><a href="#">Cerita</a></li>
-                <li><a href="#">Tentang</a></li>
-            </ul>
-        </div>
+<!-- GALERI -->
+<div class="gallery">
+    <img src="https://picsum.photos/400/300?1">
+    <img src="https://picsum.photos/400/300?2">
+</div>
 
-    </div>
-</nav>
-
-<!-- KONTEN -->
-<div class="container">
-    <h2 style="text-align:center;">💖 Idan Dan Wuwu 💖</h2>
-    <p style="text-align:center;">
-        Perjalanan kisah kita tertulis di setiap harinya
+<!-- CERITA -->
+<div class="section">
+    <h2>✨ Awal Pertemuan Kita</h2>
+    <p>
+        Semua berawal dari ketidaksengajaan bertemu di jalan waktu itu,
+        dan dari situ aku menemukan rasa yang selama ini hilang dari diriku.
     </p>
 </div>
 
-<!-- WAJIB: jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-<!-- WAJIB: Bootstrap 3 JS -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script>
+function toggleMenu(){
+    const menu = document.getElementById("menu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+</script>
 
 </body>
 </html>
