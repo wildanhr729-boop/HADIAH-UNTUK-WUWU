@@ -1,39 +1,219 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Codingan Kami Berdua</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  
-  <style>
-    body {
-      background: #fff0f6;
-      font-family: "Segoe UI", sans-serif;
-      overflow-x: hidden;
-      transition: background 0.5s ease;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codingan Kami Berdua</title>
 
-    /* Navbar */
-    .navbar-custom {
-      background: #c2185b;
-      border: none;
-      border-radius: 0;
-    }
-    .navbar-custom .navbar-brand,
-    .navbar-custom .navbar-nav li a {
-      color: white !important;
-    }
-    .navbar-custom .navbar-nav li a:hover {
-      background: #ad1457 !important;
-    }
+<!-- Bootstrap 3 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-    /* Header */
-    .jumbotron {
-      background: linear-gradient(135deg, #f8bbd0, #f48fb1);
-      color: white;
-      text-align: center;
+<style>
+/* ===== GLOBAL ===== */
+body{
+  font-family:"Segoe UI",sans-serif;
+  background:#fff0f6;
+  padding-top:70px;
+  overflow-x:hidden;
+}
+
+/* ===== NAVBAR ===== */
+.navbar-custom{
+  background:#c2185b;
+  border:none;
+}
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-nav>li>a{
+  color:white !important;
+}
+.navbar-custom .navbar-nav>li>a:hover{
+  background:#ad1457 !important;
+}
+.navbar{
+  z-index:99999;
+}
+
+/* dropdown */
+.dropdown-menu{
+  background:#c2185b;
+}
+.dropdown-menu>li>a{
+  color:white;
+}
+.dropdown-menu>li>a:hover{
+  background:#ad1457;
+}
+
+/* ===== HEADER ===== */
+.jumbotron{
+  background:linear-gradient(135deg,#f8bbd0,#f48fb1);
+  color:white;
+  text-align:center;
+  padding:60px 20px;
+  margin-bottom:0;
+}
+
+/* ===== FOTO ===== */
+.photo-container{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+  margin-top:30px;
+}
+.photo-frame{
+  width:180px;
+  height:220px;
+  border:8px solid #fff;
+  border-radius:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,.3);
+  overflow:hidden;
+}
+.photo-frame img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* ===== SECTION ===== */
+.section{
+  padding:40px 20px;
+  text-align:center;
+}
+.section h2{
+  color:#c2185b;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  background:#c2185b;
+  color:white;
+  text-align:center;
+  padding:15px;
+}
+
+/* ===== LANGIT ===== */
+#sky{
+  position:fixed;
+  top:10px;
+  right:10px;
+  z-index:9999;
+}
+#sun,#moon{
+  font-size:40px;
+  display:none;
+}
+
+/* ===== RESPONSIF ===== */
+@media(max-width:768px){
+  .navbar-nav{
+    background:#c2185b;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR (SATU-SATUNYA) ===== -->
+<nav class="navbar navbar-custom navbar-fixed-top">
+<div class="container-fluid">
+
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed"
+      data-toggle="collapse" data-target="#main-navbar">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="index.html">Codingan Kami</a>
+  </div>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="nav navbar-nav">
+      <li><a href="index.html">Dashboard</a></li>
+      <li><a href="buku.html">Buku Cerita</a></li>
+      <li><a href="album.html">Album Foto</a></li>
+      <li><a href="counter.html">Hari Jadi</a></li>
+      <li><a href="player.html">Playlist</a></li>
+
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          Fitur Lain <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="puzzle.html">Puzzle Kenangan</a></li>
+          <li><a href="special.html">Malam Spesial</a></li>
+          <li><a href="map.html">Peta Kenangan</a></li>
+          <li><a href="quotes.html">Quotes Romantis</a></li>
+          <li><a href="timeline.html">Timeline Cinta</a></li>
+          <li><a href="minigame.html">Mini Game</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+</div>
+</nav>
+
+<!-- ===== LANGIT ===== -->
+<div id="sky">
+  <div id="sun">☀️</div>
+  <div id="moon">🌙</div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<div class="jumbotron">
+<h1>💖 Idan Dan Wuwu 💖</h1>
+<p>Perjalanan kisah kita tertulis di setiap harinya</p>
+</div>
+
+<!-- ===== FOTO ===== -->
+<div class="photo-container">
+<div class="photo-frame"><img src="ft7.jpg"></div>
+<div class="photo-frame"><img src="ft8.jpg"></div>
+</div>
+
+<!-- ===== CERITA ===== -->
+<div class="container section">
+<h2>✨ Awal Pertemuan Kita</h2>
+<p>
+Semua berawal dari ketidaksengajaan bertemu di jalan waktu itu,
+dan dari situ aku menemukan rasa yang selama ini hilang dari diriku.
+</p>
+</div>
+
+<div class="container section">
+<h2>📖 Tanggal Jadian Kita</h2>
+<h3>29-01-2024</h3>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+© 2025 Codingan Kami Berdua | Dibuat dengan cinta ❤️
+</footer>
+
+<!-- ===== SCRIPT ===== -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<script>
+function showSky(){
+  const h=new Date().getHours();
+  if(h>=6 && h<18){
+    sun.style.display="block";
+    moon.style.display="none";
+  }else{
+    sun.style.display="none";
+    moon.style.display="block";
+  }
+}
+showSky();
+setInterval(showSky,60000);
+</script>
+
+</body>
+</html>
       padding: 60px 20px;
       margin-bottom: 0;
     }
@@ -612,6 +792,7 @@ function setTheme(color) {
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 </html>
+
 
 
 
