@@ -335,25 +335,29 @@
   text-decoration: none;
   padding: 8px 0;
 }
+    .navbar-toggle {
+  border: none;
+}
+
+.navbar-toggle .icon-bar {
+  background-color: white;
+}
+
+@media (max-width: 768px) {
+  .navbar-nav {
+    background-color: #c2185b;
+  }
+}
     
 
   </style>
 </head>
 <body>
-  <nav class="navbar navbar-custom navbar-fixed-top">
-  <div class="container-fluid">
-
-    <!-- Tombol hamburger (pojok kanan atas) -->
-<!-- Tombol Hamburger -->
-<div class="hamburger" onclick="toggleMenu()">
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
-    
+<nav class="navbar navbar-custom navbar-fixed-top">
   <div class="container-fluid">
 
     <div class="navbar-header">
+      <!-- TOMBOL HAMBURGER -->
       <button type="button"
               class="navbar-toggle collapsed"
               data-toggle="collapse"
@@ -366,24 +370,34 @@
       <a class="navbar-brand" href="index.html">Codingan Kami</a>
     </div>
 
+    <!-- MENU -->
     <div class="collapse navbar-collapse" id="main-navbar">
-      <!-- isi menu kamu (kalau ada) -->
-    </div>
-
-  </div>
-</nav>
-
-
-    <!-- Isi menu -->
-    <div class="collapse navbar-collapse" id="main-navbar">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav navbar-right">
         <li><a href="index.html">Dashboard</a></li>
         <li><a href="buku.html">Buku Cerita</a></li>
         <li><a href="album.html">Album Foto</a></li>
         <li><a href="counter.html">Hari Jadi</a></li>
         <li><a href="player.html">Playlist</a></li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Fitur Lain <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="puzzle.html">Puzzle Kenangan</a></li>
+            <li><a href="special.html">Malam Spesial</a></li>
+            <li><a href="map.html">Peta Kenangan</a></li>
+            <li><a href="quotes.html">Quotes Romantis</a></li>
+            <li><a href="timeline.html">Timeline Cinta</a></li>
+            <li><a href="minigame.html">Mini Game</a></li>
+          </ul>
+        </li>
       </ul>
     </div>
+
+  </div>
+</nav>
+
 
   </div>
 </nav>
@@ -662,6 +676,7 @@ function toggleMenu() {
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 </html>
+
 
 
 
