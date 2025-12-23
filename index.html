@@ -1,128 +1,667 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codingan Kami Berdua</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
+  <style>
+    body {
+      background: #fff0f6;
+      font-family: "Segoe UI", sans-serif;
+      overflow-x: hidden;
+      transition: background 0.5s ease;
+    }
 
-<title>Idan Dan Wuwu</title>
+    /* Navbar */
+    .navbar-custom {
+      background: #c2185b;
+      border: none;
+      border-radius: 0;
+    }
+    .navbar-custom .navbar-brand,
+    .navbar-custom .navbar-nav li a {
+      color: white !important;
+    }
+    .navbar-custom .navbar-nav li a:hover {
+      background: #ad1457 !important;
+    }
 
-<!-- Bootstrap -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    /* Header */
+    .jumbotron {
+      background: linear-gradient(135deg, #f8bbd0, #f48fb1);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+      margin-bottom: 0;
+    }
+    .jumbotron h1 {
+      font-size: 36px;
+      margin-bottom: 15px;
+    }
 
-<!-- Font -->
-<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+    /* Frame Foto */
+    .photo-frame {
+      position: relative;
+      width: 180px;
+      height: 220px;
+      border: 8px solid #fff;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      overflow: hidden;
+      border-radius: 12px;
+      background: #fff;
+      margin: 15px auto;
+    }
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-<style>
-body{
-  margin:0;
-  padding-top:70px;
-  font-family:'Comic Neue', cursive;
-  background:#fff;
-  overflow-x:hidden;
+    /* Grid untuk foto kiri kanan */
+    .photo-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    /* Section */
+    .section {
+      padding: 40px 20px;
+    }
+    .section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #c2185b;
+      font-size: 24px;
+    }
+    .section p {
+      font-size: 16px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    /* Footer */
+    footer {
+      background: #c2185b;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+    }
+
+    /* Responsif */
+    @media (max-width: 768px) {
+      .jumbotron h1 {
+        font-size: 28px;
+      }
+      .section h2 {
+        font-size: 20px;
+      }
+      .section p {
+        font-size: 14px;
+      }
+      .photo-frame {
+        width: 140px;
+        height: 180px;
+      }
+    }
+    #sun {
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle at center, #FFD700 60%, #FFA500 100%);
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+  animation: pulse 2s infinite;
 }
 
-/* NAVBAR */
-.navbar-custom{
-  background:#e91e63;
-  border:none;
+#sun::before, #sun::after {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 215, 0, 0.6);
+  animation: spin 8s linear infinite;
 }
-.navbar-custom .navbar-brand,
-.navbar-custom .navbar-nav>li>a{
-  color:white;
-}
-.navbar-custom .navbar-nav>li>a:hover{
-  background:rgba(255,255,255,0.2);
-}
-
-/* hamburger */
-.navbar-toggle{
-  border:1px solid white;
-}
-.navbar-toggle .icon-bar{
-  background:white;
+#sun::after {
+  border: 3px dashed rgba(255, 165, 0, 0.6);
+  animation: spin 12s linear infinite reverse;
 }
 
-/* JUDUL */
-.judul{
-  text-align:center;
-  margin-top:40px;
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.6); }
+  50% { box-shadow: 0 0 50px rgba(255, 215, 0, 1); }
 }
-.judul h1{
-  font-size:36px;
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
-.judul p{
-  font-size:18px;
+#moon {
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle at 30% 30%, #f0f0f0 70%, #bbb 100%);
+  border-radius: 50%;
+  box-shadow: -10px -10px 20px rgba(255,255,255,0.3);
+  position: relative;
+}
+#moon::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  box-shadow: 0 0 25px rgba(200,200,255,0.5);
 }
 
-/* BUNGA JATUH */
-.bunga{
-  position:fixed;
-  top:-50px;
-  animation:jatuh linear infinite;
-  z-index:999;
+/* LANGIT */
+#sky {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 999;
 }
-@keyframes jatuh{
-  to{
-    transform:translateY(110vh) rotate(360deg);
+
+/* 🌞 MATAHARI */
+#sun {
+  width: 150px;
+  height: 100px;
+  background: radial-gradient(circle at center, #FFD700 60%, #FFA500 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+  animation: pulse 2s infinite;
+  display: none;
+  position: relative;
+}
+
+#sun::before, #sun::after {
+  content: "";
+  position: absolute;
+  top: -20px; left: -20px; right: -20px; bottom: -20px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 215, 0, 0.6);
+  animation: spin 8s linear infinite;
+}
+#sun::after {
+  border: 3px dashed rgba(255, 165, 0, 0.6);
+  animation: spin 12s linear infinite reverse;
+}
+
+/* 🌙 BULAN */
+#moon {
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle at 30% 30%, #f0f0f0 70%, #bbb 100%);
+  border-radius: 50%;
+  box-shadow: -10px -10px 20px rgba(255,255,255,0.3);
+  display: none;
+  position: relative;
+}
+#moon::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  box-shadow: 0 0 25px rgba(200,200,255,0.5);
+}
+
+/* ✨ BINTANG */
+.star {
+  position: fixed;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: twinkle 2s infinite alternate;
+  z-index: 1;
+}
+@keyframes twinkle {
+  from { opacity: 0.2; }
+  to { opacity: 1; }
+}
+
+/* Animasi Matahari */
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.6); }
+  50% { box-shadow: 0 0 50px rgba(255, 215, 0, 1); }
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Warna background dropdown */
+.navbar .dropdown-menu {
+  background-color: #c2185b; /* pink tua / sesuai navbar */
+  border-radius: 6px;
+  border: none;
+  padding: 5px 0;
+}
+
+/* Warna teks default */
+.navbar .dropdown-menu > li > a {
+  color: white;
+  padding: 10px 20px;
+}
+
+/* Warna saat hover */
+.navbar .dropdown-menu > li > a:hover {
+  background-color: #ad1457; /* sedikit lebih gelap */
+  color: #fff;
+}
+.navbar .dropdown-menu {
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+}
+
+#rainbow {
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.8);
+  width: 400px;
+  height: 200px;
+  background: radial-gradient(circle at bottom,
+    red 0%, orange 15%, yellow 30%, green 45%, blue 60%, indigo 75%, violet 90%);
+  border-radius: 50%/100% 100% 0 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 2s ease, transform 2s ease;
+  z-index: 9999;
+}
+#rainbow.show {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+    .navbar-toggle {
+  float: right;
+  margin-right: 15px;
+}
+@media (max-width: 768px) {
+  .navbar-nav {
+    background-color: #c2185b;
+  }
+
+  .navbar-nav > li > a {
+    color: white !important;
+  }
+
+  .navbar-nav > li > a:hover {
+    background-color: #ad1457 !important;
   }
 }
-</style>
+/* HAMBURGER BUTTON */
+.hamburger {
+  width: 30px;
+  height: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.hamburger span {
+  height: 4px;
+  background: white;
+  border-radius: 2px;
+}
+
+/* Biar muncul cuma di HP */
+@media (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
+  }
+    .mobile-menu {
+  display: none;
+  background: #d81b60;
+  padding: 10px;
+}
+
+.mobile-menu a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 8px 0;
+}
+    
+
+  </style>
 </head>
-
 <body>
-
-<!-- NAVBAR -->
-<nav class="navbar navbar-custom navbar-fixed-top">
+  <nav class="navbar navbar-custom navbar-fixed-top">
   <div class="container-fluid">
+
+    <!-- Tombol hamburger (pojok kanan atas) -->
+<!-- Tombol Hamburger -->
+<div class="hamburger" onclick="toggleMenu()">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+    
+  <div class="container-fluid">
+
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+      <button type="button"
+              class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#main-navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Codingan Kami</a>
+
+      <a class="navbar-brand" href="index.html">Codingan Kami</a>
     </div>
 
-    <div class="collapse navbar-collapse" id="menu">
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <!-- isi menu kamu (kalau ada) -->
+    </div>
+
+  </div>
+</nav>
+
+
+    <!-- Isi menu -->
+    <div class="collapse navbar-collapse" id="main-navbar">
       <ul class="nav navbar-nav">
-        <li><a href="#">Dashboard</a></li>
-        <li><a href="#">Buku Cerita</a></li>
-        <li><a href="#">Album Foto</a></li>
-        <li><a href="#">Hari Jadi</a></li>
-        <li><a href="#">Playlist</a></li>
+        <li><a href="index.html">Dashboard</a></li>
+        <li><a href="buku.html">Buku Cerita</a></li>
+        <li><a href="album.html">Album Foto</a></li>
+        <li><a href="counter.html">Hari Jadi</a></li>
+        <li><a href="player.html">Playlist</a></li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<!-- Matahari & Bulan -->
+<div id="sky">
+  <div id="sun">☀️</div>
+  <div id="moon">🌙</div>
+</div>
+
+<script>
+  const sun = document.getElementById("sun");
+  const moon = document.getElementById("moon");
+
+  // Jam sekarang
+  const hour = new Date().getHours();
+
+  if (hour >= 6 && hour < 18) {
+    // Siang
+    sun.style.display = "block";
+    document.body.style.background = "linear-gradient(135deg, #87CEFA, #FFD700)";
+  } else {
+    // Malam
+    moon.style.display = "block";
+    document.body.style.background = "linear-gradient(135deg, #0d1b2a, #1b263b)";
+
+    // Tambah bintang
+    for (let i = 0; i < 40; i++) {
+      const star = document.createElement("div");
+      star.classList.add("star");
+      star.style.width = star.style.height = Math.random() * 3 + "px";
+      star.style.top = Math.random() * window.innerHeight + "px";
+      star.style.left = Math.random() * window.innerWidth + "px";
+      star.style.animationDuration = (Math.random() * 2 + 1) + "s";
+      document.body.appendChild(star);
+    }
+  }
+</script>
+
+<div id="rainbow"></div>
+
+<style>
+#rainbow {
+  position: fixed;
+  bottom: 0;                /* biar muncul dari bawah seperti pelangi asli */
+  left: 50%;
+  transform: translateX(-50%) scale(0.8);
+  width: 100vw;             /* penuh layar */
+  height: 50vh;             /* setengah lingkaran */
+  background: conic-gradient(
+    red, orange, yellow, green, blue, indigo, violet
+  );
+  border-radius: 50% 50% 0 0;   /* bikin setengah lingkaran */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 2s ease, transform 2s ease;
+  filter: blur(8px) brightness(1.2); /* biar lembut */
+  z-index: 999;
+}
+#rainbow.show {
+  opacity: 0.7;            /* transparan lembut */
+  transform: translateX(-50%) scale(1);
+}
+</style>
+
+<script>
+let clickCount = 0;
+document.addEventListener("click", () => {
+    clickCount++;
+    if(clickCount === 5){   // muncul setelah 5 kali klik layar
+        const rainbow = document.getElementById("rainbow");
+        rainbow.classList.add("show");
+        setTimeout(()=> {
+            rainbow.classList.remove("show");
+            clickCount = 0;
+        }, 5000); // hilang setelah 5 detik
+    }
+});
+</script>
+
+
+
+<div class="text-center my-3">
+  <button onclick="setTheme('pink')">💗 Pink</button>
+  <button onclick="setTheme('blue')">💙 Biru</button>
+  <button onclick="setTheme('purple')">💜 Ungu</button>
+  <button onclick="setTheme('dark')">🖤 Gelap</button>
+</div>
+
+<script>
+function setTheme(color) {
+  let themeColor;
+  if(color === "pink"){
+    themeColor = "#ffe4ec";
+  } else if(color === "blue"){
+    themeColor = "#e0f7fa";
+  } else if(color === "purple"){
+    themeColor = "#f3e5f5";
+  } else if(color === "dark"){
+    themeColor = "#212121";
+  }
+
+  // atur body
+  document.body.style.background = themeColor;
+  document.body.setAttribute("data-theme", color);
+
+  // simpan ke localStorage
+  localStorage.setItem("theme", color);
+}
+
+// load theme saat buka halaman
+window.onload = function() {
+  const savedTheme = localStorage.getItem("theme");
+  if(savedTheme) setTheme(savedTheme);
+}
+</script>
+
+
+
+<!-- Navbar -->
+<nav class="navbar navbar-custom navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand dan tombol toggle -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Codingan Kami</a>
+    </div>
+
+    <!-- Menu -->
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Dashboard</a></li>
+        <li><a href="buku.html">Buku Cerita</a></li>
+        <li><a href="album.html">Album Foto</a></li>
+        <li><a href="counter.html">Hari Jadi</a></li>
+        <li><a href="player.html">Playlist</a></li>
+        
+        <!-- Dropdown untuk menu tambahan -->
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+            Fitur Lain <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="puzzle.html">Puzzle Kenangan</a></li>
+            <li><a href="special.html">Malam Spesial</a></li>
+            <li><a href="map.html">Peta Kenangan</a></li>
+            <li><a href="quotes.html">Quotes Romantis</a></li>
+            <li><a href="timeline.html">Timeline Cinta</a></li>
+            <li><a href="minigame.html">Mini Game</a></li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>
 </nav>
 
-<!-- ISI -->
-<div class="judul">
+
+
+
+
+<!-- Header -->
+<div class="jumbotron">
   <h1>💖 Idan Dan Wuwu 💖</h1>
-  <p>Perjalanan kisah kita tertulis di setiap harinya</p>
+  <p>Perjalanan kisah kita tertulis di setiap Harinya</p>
 </div>
 
-<!-- CONTOH FOTO -->
-<div class="container text-center">
-  <img src="https://i.imgur.com/4AiXzf8.jpeg" class="img-responsive center-block" style="max-width:300px;border-radius:15px;">
-  <p style="margin-top:10px;">📅 14 Februari 2023</p>
+<!-- Frame Foto -->
+<div class="photo-container">
+  <div class="photo-frame">
+    <img src="ft7.jpg" alt="Foto Kiri">
+  </div>
+  <div class="photo-frame">
+    <img src="ft8.jpg" alt="Foto Kanan">
+  </div>
 </div>
 
-<!-- EFEK BUNGA -->
+<!-- Bagian Cerita -->
+<div class="container section">
+  <h2>✨ Awal Pertemuan Kita</h2>
+  <p>
+    Semua berawal dari ketidak sengajaan bertemu di jalan waktu itu dan dari situ 
+    aku menemukan rasa yg selama ini hilang dari diriku. Aku dan Kamu menyimpan banyak cerita, kita selalu menuliskannya bersama.
+  </p>
+</div>
+
+<!-- Bagian Kenangan -->
+<div class="container section">
+  <h2>📖 Tanggal Jadian Kita</h2>
+  <center><h3>29-01-2024</h3></center>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 Codingan Kami Berdua | Dibuat dengan cinta & sedikit bug 🐞</p>
+</footer>
+
 <script>
-for(let i=0;i<25;i++){
-  let bunga=document.createElement("div");
-  bunga.innerHTML="🌸";
-  bunga.className="bunga";
-  bunga.style.left=Math.random()*100+"vw";
-  bunga.style.animationDuration=3+Math.random()*5+"s";
-  bunga.style.fontSize=20+Math.random()*20+"px";
-  document.body.appendChild(bunga);
-}
+  function showSkyIcon() {
+    const hour = new Date().getHours();
+    if (hour >= 6 && hour < 18) {
+      document.getElementById("sun").style.display = "block";
+      document.getElementById("moon").style.display = "none";
+    } else {
+      document.getElementById("sun").style.display = "none";
+      document.getElementById("moon").style.display = "block";
+    }
+  }
+
+  
+  showSkyIcon();
+  setInterval(showSkyIcon, 60000); // cek tiap menit
+</script>
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script>
+document.addEventListener("click", function(e) {
+    const heart = document.createElement("div");
+    heart.innerHTML = "💖";
+    heart.style.position = "absolute";
+    heart.style.left = e.pageX + "px";
+    heart.style.top = e.pageY + "px";
+    heart.style.fontSize = "20px";
+    heart.style.opacity = "1";
+    heart.style.transition = "all 1s ease-out";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.style.top = (e.pageY - 50) + "px";
+        heart.style.opacity = "0";
+    }, 50);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 1000);
+});
 </script>
 
-<!-- SCRIPT -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+function setTheme(color) {
+  if(color === "pink"){
+    document.body.style.background = "#ffe4ec";
+  } else if(color === "blue"){
+    document.body.style.background = "#e0f7fa";
+  } else if(color === "purple"){
+    document.body.style.background = "#f3e5f5";
+  } else if(color === "dark"){
+    document.body.style.background = "#212121";
+    document.body.style.color = "white";
+  }
+}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+</script>
+<script>
+function toggleMenu() {
+  const menu = document.getElementById("mobileMenu");
+  if (menu.style.display === "block") {
+    menu.style.display = "none";
+  } else {
+    menu.style.display = "block";
+  }
+}
+</script>
+  
 
 </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 </html>
+
+
+saya cuma mau di codingan saya yg awal ini tidak di rubah cuma tambahkan tombol hamburger sajaaaaaaaa, kamu paham gaaa!
